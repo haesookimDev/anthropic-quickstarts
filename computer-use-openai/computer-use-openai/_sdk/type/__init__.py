@@ -11,3 +11,4 @@ from .content_block_delta_event import ContentBlockDeltaEvent as ContentBlockDel
 from .content_block_start_event import ContentBlockStartEvent as ContentBlockStartEvent
 
 from .raw_content_block_stop_event import RawContentBlockStopEvent as RawContentBlockStopEvent
+from .raw_message_stream_event import RawMessageStreamEvent as RawMessageStreamEvent

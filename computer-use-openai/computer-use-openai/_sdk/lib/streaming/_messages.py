@@ -13,7 +13,7 @@ from ._types import (
     MessageStreamEvent,
     ContentBlockStopEvent,
 )
-from ....types import Message, ContentBlock, RawMessageStreamEvent
+from _sdk.type import Message, ContentBlock, RawMessageStreamEvent
 from ..._utils import consume_sync_iterator, consume_async_iterator
 from ..._models import build, construct_type
 from ..._streaming import Stream, AsyncStream

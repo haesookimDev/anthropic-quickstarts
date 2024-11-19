@@ -2,7 +2,7 @@
 
 from typing_extensions import Literal
 
-from .._sdk._models import BaseModel
+from _sdk._models import BaseModel
 
 __all__ = ["TextBlock"]
 
