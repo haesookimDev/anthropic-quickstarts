@@ -3,55 +3,25 @@ FROM docker.io/ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_PRIORITY=high
 
-RUN apt-get update && \
-    apt-get -y upgrade && \
+RUN apt-get update && apt-get -y upgrade && \
     apt-get -y install \
-    # UI Requirements
-    xvfb \
-    xterm \
-    xdotool \
-    scrot \
-    imagemagick \
-    sudo \
-    mutter \
-    x11vnc \
-    # Python/pyenv reqs
-    build-essential \
-    libssl-dev  \
-    zlib1g-dev \
-    libbz2-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    curl \
-    git \
-    libncursesw5-dev \
-    xz-utils \
-    tk-dev \
-    libxml2-dev \
-    libxmlsec1-dev \
-    libffi-dev \
-    liblzma-dev \
-    # Network tools
-    net-tools \
-    netcat \
-    # PPA req
+    # UI
+    xvfb xterm xdotool scrot imagemagick sudo mutter x11vnc \
+    # Python
+    build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev \
+    curl git libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+    libffi-dev liblzma-dev \
+    # Network
+    net-tools netcat \
+    # PPA
     software-properties-common && \
-    # Userland apps
+    #Userland apps
     sudo add-apt-repository ppa:mozillateam/ppa && \
     sudo apt-get install -y --no-install-recommends \
-    libreoffice \
-    firefox-esr \
-    x11-apps \
-    xpdf \
-    gedit \
-    xpaint \
-    tint2 \
-    galculator \
-    pcmanfm \
-    unzip && \
-    apt-get clean
+    libreoffice firefox-esr x11-apps xpdf gedit xpaint \
+    tint2 galculator pcmanfm unzip && apt-get clean
 
-# Install noVNC
+    # Install noVNC
 RUN git clone --branch v1.5.0 https://github.com/novnc/noVNC.git /opt/noVNC && \
     git clone --branch v0.12.0 https://github.com/novnc/websockify /opt/noVNC/utils/websockify && \
     ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html
@@ -81,18 +51,19 @@ RUN eval "$(pyenv init -)" && \
     pyenv global $PYENV_VERSION && \
     pyenv rehash
 
+
 ENV PATH="$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH"
 
 RUN python -m pip install --upgrade pip==23.1.2 setuptools==58.0.4 wheel==0.40.0 && \
     python -m pip config set global.disable-pip-version-check true
 
 # only reinstall if requirements.txt changes
-COPY --chown=$USERNAME:$USERNAME computer_use_demo/requirements.txt $HOME/computer_use_demo/requirements.txt
-RUN python -m pip install -r $HOME/computer_use_demo/requirements.txt
+COPY --chown=$USERNAME:$USERNAME computer_use_openai/requirements.txt $HOME/computer_use_openai/requirements.txt
+RUN python -m pip install -r $HOME/computer_use_openai/requirements.txt
 
 # setup desktop env & app
 COPY --chown=$USERNAME:$USERNAME image/ $HOME
-COPY --chown=$USERNAME:$USERNAME computer_use_demo/ $HOME/computer_use_demo/
+COPY --chown=$USERNAME:$USERNAME computer_use_openai/ $HOME/computer_use_openai/
 
 ARG DISPLAY_NUM=1
 ARG HEIGHT=768

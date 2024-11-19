@@ -1,0 +1,15 @@
+services:
+  computer-use:
+    image: ubuntu:22.04
+    container_name: computer-use
+    environment:
+      POSTGRES_USER: "${MLFLOW_USER}"
+      POSTGRES_PASSWORD: "${MLFLOW_PASSWORD}"
+      POSTGRES_DB: "${MLFLOW_DB}"
+    volumes:
+      - ./db_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-U", "mlflowuser", "-d", "mlflowdatabase"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
