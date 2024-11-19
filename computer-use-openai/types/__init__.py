@@ -2,12 +2,22 @@ from .beta_tool_computer_use_param import BetaToolComputerUseParam as BetaToolCo
 from .beta_tool_text_editor_param import BetaToolTextEditorParam as BetaToolTextEditorParam
 from .beta_tool_bash_param import BetaToolBashParam as BetaToolBashParam
 
-
 from .beta_tool_param import BetaToolParam as BetaToolParam
-
-
 from .beta_tool_union_param import BetaToolUnionParam as BetaToolUnionParam
+from .beta_tool_use_block_param import BetaToolUseBlockParam as BetaToolUseBlockParam
+from .beta_tool_result_block_param import BetaToolResultBlockParam as BetaToolResultBlockParam
+
+from .beta_text_block_param import BetaTextBlockParam as BetaTextBlockParam
+from .beta_image_block_param import BetaImageBlockParam as BetaImageBlockParam
 from .beta_content_block_param import BetaContentBlockParam as BetaContentBlockParam
+
+from .beta_message_param import BetaMessageParam as BetaMessageParam
+
+from .beta_cache_control_ephemeral_param import BetaCacheControlEphemeralParam as BetaCacheControlEphemeralParam
+
+from .beta_text_block import BetaTextBlock as BetaTextBlock
+
+from .beta_message import BetaMessage as BetaMessage
 
 from .tool_param import ToolParam as ToolParam
 from .model_param import ModelParam as ModelParam
