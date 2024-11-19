@@ -17,6 +17,7 @@ from .text_block_param import TextBlockParam as TextBlockParam
 from .tool_choice_param import ToolChoiceParam as ToolChoiceParam
 
 from .message import Message as Message
+from .completion import Completion
 from .model import Model as Model
 from .usage import Usage as Usage
 
