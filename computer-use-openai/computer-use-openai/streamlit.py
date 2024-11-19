@@ -15,7 +15,7 @@ from typing import cast
 
 import httpx
 import streamlit as st
-from ._sdk import RateLimitError
+from _sdk import RateLimitError
 from .types import (
     BetaContentBlockParam,
     BetaTextBlockParam,

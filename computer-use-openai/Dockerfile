@@ -58,12 +58,12 @@ RUN python -m pip install --upgrade pip==23.1.2 setuptools==58.0.4 wheel==0.40.0
     python -m pip config set global.disable-pip-version-check true
 
 # only reinstall if requirements.txt changes
-COPY --chown=$USERNAME:$USERNAME computer_use_openai/requirements.txt $HOME/computer_use_openai/requirements.txt
-RUN python -m pip install -r $HOME/computer_use_openai/requirements.txt
+COPY --chown=$USERNAME:$USERNAME computer-use-openai/requirements.txt $HOME/computer-use-openai/requirements.txt
+RUN python -m pip install -r $HOME/computer-use-openai/requirements.txt
 
 # setup desktop env & app
 COPY --chown=$USERNAME:$USERNAME image/ $HOME
-COPY --chown=$USERNAME:$USERNAME computer_use_openai/ $HOME/computer_use_openai/
+COPY --chown=$USERNAME:$USERNAME computer-use-openai/ $HOME/computer-use-openai/
 
 ARG DISPLAY_NUM=1
 ARG HEIGHT=768

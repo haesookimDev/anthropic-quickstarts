@@ -1,15 +1,17 @@
 services:
   computer-use:
-    image: ubuntu:22.04
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: computer-use
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+      - ${VNC_PORT}:${VNC_PORT}
+      - ${DESKTOP_VIEW_PORT}:${DESKTOP_VIEW_PORT}
+      - ${STREAMLIT_SERVER_PORT}:${STREAMLIT_SERVER_PORT}
     environment:
-      POSTGRES_USER: "${MLFLOW_USER}"
-      POSTGRES_PASSWORD: "${MLFLOW_PASSWORD}"
-      POSTGRES_DB: "${MLFLOW_DB}"
+      ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY}"
     volumes:
-      - ./db_data:/var/lib/postgresql/data/
-    healthcheck:
-      test: ["CMD", "pg_isready", "-q", "-U", "mlflowuser", "-d", "mlflowdatabase"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - ${HOME}/.anthropic:/home/computeruse/.anthropic

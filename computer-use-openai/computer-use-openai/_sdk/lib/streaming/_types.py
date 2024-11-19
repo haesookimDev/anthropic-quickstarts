@@ -1,7 +1,7 @@
 from typing import Union
 from typing_extensions import Literal
 
-from ....types import (
+from _sdk.type import (
     Message,
     ContentBlock,
     MessageDeltaEvent as RawMessageDeltaEvent,
@@ -11,6 +11,7 @@ from ....types import (
     ContentBlockStartEvent as RawContentBlockStartEvent,
     RawContentBlockStopEvent,
 )
+
 from ..._models import BaseModel
 
 
